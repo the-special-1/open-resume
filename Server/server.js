@@ -1,10 +1,9 @@
 const express = require("express");
 const path = require("path");
-require('dotenv').config();
+
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const session = require('express-session');
-const passport = require('passport');
+
 const sequelize = require("./config"); // Import the sequelize instance
 const Vacancy = require("./models/Vacancy"); // Import the User model
 const port = 5000;
@@ -21,21 +20,7 @@ sequelize
   .catch((err) => console.error("Error creating database:", err));
   app.use(bodyParser.json()); // Middleware to parse JSON requests
 
-  require('./config/passport-setup'); // Passport configuration
 
-  const authRoutes = require('./routes/auth');
-
-  app.use(session({
-    secret: 'secret_key', // Change this to a secure secret key in production!
-    resave: false,
-    saveUninitialized: true,
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-// Use auth routes
-app.use('/auth', authRoutes);
   app.use('/api/jobs', jobRoutes);
   // Endpoint to post a resume
   app.post('/api/resumes', async (req, res) => {

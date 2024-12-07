@@ -1,31 +1,20 @@
 // src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
-import AdminJobPost from './AdminJobPost'; // Your existing component for admin tasks
-import Table from './Table'; // Your existing table component
-import SignIn from './auth/Signin'; // Import the SignUp component if needed
-import SignUp from './auth/signup'; // Import the SignIn component
-import AdminPage from './components/Admin'; // Import the AdminPage 
+import { BrowserRouter as Router} from 'react-router-dom';
+// import Home from './components/Home'; // Your home component
+// import About from './components/About'; // Another component if needed
+import AdminJobPost from './AdminJobPost';
 const App = () => {
   return (
     <Router>
       <nav>
-        {/* Navigation links */}
-        <a href="/">Home</a>
-        <a href="http://localhost:3000/resume-import">Resume Parser</a>
-        <a href="http://localhost:3000/resume-builder">Resume Builder</a>
-        <a href="/signup">Sign Up</a> {/* Link to Sign Up page */}
-        <a href="/signin">Sign In</a> {/* Link to Sign In page */}
+        {/* <Link to="/">Home</Link>
+        <Link to="/about">About</Link> */}
+        <a href="http://localhost:3000/resume-import">Resume Import</a> {/* Link to Next.js route */}
+        <a href="http://localhost:3000/resume-parser">Resume Parser</a> {/* Link to Next.js route */}
+        <a href="http://localhost:3000/resume-builder">Resume builder</a> {/* Link to Next.js route */}
       </nav>
-      <Routes>
-        <Route path="/signup" element={<SignUp />} /> {/* Route for Sign Up */}
-        <Route path="/signin" element={<SignIn />} /> {/* Route for Sign In */}
-        
-        {/* Admin routes */}
-        <Route path="/admin" element={<AdminPage />} />
-        <Route path="/" element={<AdminJobPost />} /> {/* Admin route */}
-        <Route path="/table" element={<Table />} /> {/* Admin route for Table */}
-      </Routes>
+      <AdminJobPost/>
     </Router>
   );
 };
